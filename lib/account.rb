@@ -14,6 +14,11 @@ class Account
 
   def deposit(amount)
     self.balance += amount
+    deposit_confirmation_message(amount)
+  end
+
+  private
+  def deposit_confirmation_message(amount)
     "#{amount} was added to the account"
   end
 
