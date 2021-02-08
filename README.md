@@ -9,11 +9,11 @@
 - No stated requirement for multiple users or security
 - No stated requirement for an overdraft - assume balance cannot go below zero
 
-*Interpretation* - my natural instinct here would have been to create a program with an account class, where new users can create their own instance of a bank account with a security layer (at least account number and encrypted password). The account history and balance could then be persisted in a database.
+**Interpretation** - my natural instinct here would have been to create a program with an account class, where new users can create their own instance of a bank account with a security layer (at least account number and encrypted password). The account history and balance could then be persisted in a database.
 
 However, the requirements seem deliberately minimal. Only the basic functionality for a single account is required at this stage. I have drawn up the below user stories to reflect this.
 
-*Class Structure - initial plan*
+**Class Structure** - initial plan
 - Class = Account
 - Attributes:
   - balance (default is zero)
@@ -28,6 +28,10 @@ However, the requirements seem deliberately minimal. Only the basic functionalit
   - This might be worth extracting into a separate class, but I shall make that extraction if and when required.
 
 ### User Stories
+```
+As an new user
+So that I can store my money
+I want to be given a fresh account with zero balance
 
 As an account owner
 So that I can store my money
@@ -44,6 +48,7 @@ I want to be barred from reducing my balance below zero
 As an account owner
 So that I can keep track of my account balance
 I want to be able to print an account statement showing date, debit, credit and balance
+```
 
 # Bank Tech Test - Original Spec
 Today, you'll practice doing a tech test.
