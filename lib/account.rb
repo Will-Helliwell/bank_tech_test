@@ -21,7 +21,7 @@ class Account
 
   def withdraw(amount)
     check_if_integer(amount)
-    raise("Failed to withdraw - cannot exceed minimum balance") if self.balance - amount < MINIMUM_BALANCE
+    check_above_minimum_balance(amount)
     self.balance -= amount
     withdrawl_confirmation_message(amount)
   end
@@ -35,8 +35,12 @@ class Account
   def withdrawl_confirmation_message(amount)
     "#{amount} was withdrawn from the account"
   end
+
   def check_if_integer(amount)
     raise("Incorrect usage - integer argument expected") if amount.class != Integer
+  end
+  def check_above_minimum_balance(amount)
+    raise("Failed to withdraw - cannot exceed minimum balance") if self.balance - amount < MINIMUM_BALANCE
   end
 
 end
