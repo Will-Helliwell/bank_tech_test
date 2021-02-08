@@ -9,7 +9,7 @@ describe Transaction do
       expect(described_class).to respond_to(:new).with(3).arguments
     end
     it "is created with a date attribute of the current date" do
-      expect(transaction.date).to eq(Time.new.strftime("%d/%m/%Y"))
+      expect(transaction.date).to eq(Time.new.strftime(Transaction::DATE_FORMAT))
     end
     it "is created with a credit attribute that can be accessed" do
       expect(transaction.credit).to eq(10)
