@@ -17,7 +17,7 @@ class Account
     "Your current balance is #{self.balance}"
   end
 
-  def deposit(amount, transaction=Transaction.new(amount, nil, self.balance))
+  def deposit(amount, transaction=Transaction.new(amount, nil, self.balance + amount))
     check_if_integer(amount)
     self.balance += amount
     self.transactions << transaction
