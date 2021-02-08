@@ -6,7 +6,6 @@ class Account
   MINIMUM_BALANCE = 0
 
   attr_accessor :balance, :transactions
-  # attr_writer :transactions
 
   def initialize
     @balance = INITIAL_BALANCE
