@@ -26,7 +26,7 @@ However, the requirements seem deliberately minimal. Only the basic functionalit
 
 - Class 2 = Transaction
   - This might be worth extracting into a separate class, but I shall make that extraction if and when required.
-  - Choice - I chose to make transaction a separate class (rather than, for example, recording the transactions for an account as an array of hashes) because to me transactions and accounts were two distinct objects with distinct responsiblitites (holding data for a single transaction vs holding data and amending details for the entire account respectively).
+  - Choice - I chose to make transaction a separate class (rather than, for example, recording the transactions for an account as an array of hashes) because to me transactions and accounts were two distinct objects with distinct responsibilities (holding data for a single transaction vs holding data and amending details for the entire account respectively).
 
 ### User Stories
 ```

@@ -39,4 +39,10 @@ describe Account do
     end
   end
 
+  describe "#print_statement" do
+    it "prints nothing for an account with no transactions" do
+      expect(account.print_statement).to eq("No recorded transactions")
+    end
+  end
+
 end

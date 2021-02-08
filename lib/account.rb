@@ -28,6 +28,9 @@ class Account
     withdrawl_confirmation_message(amount)
   end
 
+  def print_statement
+    "No recorded transactions"
+  end
 
 
   private
