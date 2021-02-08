@@ -8,6 +8,9 @@ describe Account do
   end
 
   describe "#deposit" do
+    it "raises an error if an integer not given as an argument" do
+      expect{account.deposit("hello")}.to raise_error("Incorrect usage - integer argument expected")
+    end
     it "returns a confirmation message when given an integer" do
       expect(account.deposit(100)).to eq("100 was added to the account")
     end
@@ -20,6 +23,9 @@ describe Account do
   describe "#withdraw" do
     before(:each) do
       account.deposit(100)
+    end
+    it "raises an error if an integer not given as an argument" do
+      expect{account.deposit("hello")}.to raise_error("Incorrect usage - integer argument expected")
     end
     it "returns a confirmation message when given an integer" do
       expect(account.withdraw(50)).to eq("50 was withdrawn from the account")
