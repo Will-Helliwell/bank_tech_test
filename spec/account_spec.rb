@@ -2,6 +2,7 @@ require 'account'
 
 describe Account do
   let(:account) {Account.new}
+  let(:fake_transaction_1) {double("fake transaction 1", :date => 01/01/20, :credit => 100, :debit => nil, :balance => 100)}
 
   it "is created with a balance of zero" do
     expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE}")
@@ -12,11 +13,15 @@ describe Account do
       expect{account.deposit("hello")}.to raise_error("Incorrect usage - integer argument expected")
     end
     it "returns a confirmation message when given an integer" do
-      expect(account.deposit(100)).to eq("100 was added to the account")
+      expect(account.deposit(100, fake_transaction_1)).to eq("100 was added to the account")
     end
-    it "returns adds the deposit to the balance" do
-      account.deposit(100)
+    it "adds the deposit to the balance" do
+      account.deposit(100, fake_transaction_1)
       expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE + 100}")
+    end
+    it "adds a the transaction to the transaction history" do
+      account.deposit(100, fake_transaction_1)
+      expect(account.print_statement).to eq([[01/01/20, 100, nil, 100]])
     end
   end
 
@@ -40,8 +45,13 @@ describe Account do
   end
 
   describe "#print_statement" do
+    context("")
     it "prints nothing for an account with no transactions" do
       expect(account.print_statement).to eq("No recorded transactions")
+    end
+    it "prints correctly for an account with one transaction" do
+      account.deposit(100, fake_transaction_1)
+      expect(account.print_statement).to eq([[01/01/20, 100, nil, 100]])
     end
   end
 

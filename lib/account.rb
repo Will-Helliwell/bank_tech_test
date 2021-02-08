@@ -1,23 +1,26 @@
-require 'transaction'
+require_relative './transaction.rb'
 
 class Account
 
   INITIAL_BALANCE = 0
   MINIMUM_BALANCE = 0
 
-  attr_accessor :balance
+  attr_accessor :balance, :transactions
+  # attr_writer :transactions
 
   def initialize
     @balance = INITIAL_BALANCE
+    @transactions = []
   end
 
   def print_balance
     "Your current balance is #{self.balance}"
   end
 
-  def deposit(amount)
+  def deposit(amount, transaction=Transaction.new(amount, nil, self.balance))
     check_if_integer(amount)
     self.balance += amount
+    self.transactions << transaction
     deposit_confirmation_message(amount)
   end
 
@@ -29,7 +32,10 @@ class Account
   end
 
   def print_statement
-    "No recorded transactions"
+    return "No recorded transactions" if self.transactions.length == 0
+    self.transactions.map{ |transaction|
+      [transaction.date, transaction.credit, transaction.debit, transaction.balance]
+    }
   end
 
 
