@@ -17,9 +17,18 @@ class Account
     deposit_confirmation_message(amount)
   end
 
+  def withdraw(amount)
+    self.balance -= amount
+    withdrawl_confirmation_message(amount)
+  end
+
   private
   def deposit_confirmation_message(amount)
     "#{amount} was added to the account"
+  end
+
+  def withdrawl_confirmation_message(amount)
+    "#{amount} was withdrawn from the account"
   end
 
 end

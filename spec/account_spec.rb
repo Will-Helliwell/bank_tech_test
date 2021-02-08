@@ -24,7 +24,7 @@ describe Account do
     it "returns a confirmation message when given an integer" do
       expect(account.withdraw(50)).to eq("50 was withdrawn from the account")
     end
-    xit "returns adds the deposit to the balance" do
+    it "returns adds the deposit to the balance" do
       account.withdraw(50)
       expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE + 100 - 50}")
     end
