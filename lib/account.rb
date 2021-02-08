@@ -11,6 +11,7 @@ class Account
   end
 
   def deposit(amount)
+    self.balance += amount
     "#{amount} was added to the account"
   end
 

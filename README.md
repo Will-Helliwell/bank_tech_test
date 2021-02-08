@@ -21,7 +21,7 @@ However, the requirements seem deliberately minimal. Only the basic functionalit
 - Methods:
   - withdraw
   - deposit
-  - print_balance (no stated requirement for this but it makes sense as a public method and will be very useful for testing)
+  - print_balance (no stated requirement for this but it makes sense as a public method and will be very useful for testing behaviour rather than state)
   - print_statement
 
 - Class 2 = Transaction
