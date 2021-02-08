@@ -14,13 +14,13 @@ class Account
   end
 
   def deposit(amount)
-    raise("Incorrect usage - integer argument expected") if amount.class != Integer
+    check_if_integer(amount)
     self.balance += amount
     deposit_confirmation_message(amount)
   end
 
   def withdraw(amount)
-    raise("Incorrect usage - integer argument expected") if amount.class != Integer
+    check_if_integer(amount)
     raise("Failed to withdraw - cannot exceed minimum balance") if self.balance - amount < MINIMUM_BALANCE
     self.balance -= amount
     withdrawl_confirmation_message(amount)
@@ -32,9 +32,11 @@ class Account
   def deposit_confirmation_message(amount)
     "#{amount} was added to the account"
   end
-
   def withdrawl_confirmation_message(amount)
     "#{amount} was withdrawn from the account"
+  end
+  def check_if_integer(amount)
+    raise("Incorrect usage - integer argument expected") if amount.class != Integer
   end
 
 end
