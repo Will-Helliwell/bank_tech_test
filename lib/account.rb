@@ -1,3 +1,5 @@
+require 'transaction'
+
 class Account
 
   INITIAL_BALANCE = 0
