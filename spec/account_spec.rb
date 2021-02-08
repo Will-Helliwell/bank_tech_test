@@ -4,7 +4,7 @@ describe Account do
   let(:account) {Account.new}
 
   it "is created with a balance of zero" do
-    expect(account.print_balance).to eq("Your current balance is 0")
+    expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE}")
   end
 
   describe "#deposit" do
@@ -13,7 +13,7 @@ describe Account do
     end
     it "returns adds the deposit to the balance" do
       account.deposit(100)
-      expect(account.print_balance).to eq("Your current balance is 100")
+      expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE + 100}")
     end
   end
 
