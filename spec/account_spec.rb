@@ -24,9 +24,12 @@ describe Account do
     it "returns a confirmation message when given an integer" do
       expect(account.withdraw(50)).to eq("50 was withdrawn from the account")
     end
-    it "returns adds the deposit to the balance" do
+    it "subtracts the deposit to the balance" do
       account.withdraw(50)
       expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE + 100 - 50}")
+    end
+    it "returns an error if withdrawl will take below MINIMUM_BALANCE" do
+      expect{account.withdraw(1000)}.to raise_error("Failed to withdraw - cannot exceed minimum balance")
     end
   end
 

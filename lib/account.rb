@@ -1,6 +1,7 @@
 class Account
 
   INITIAL_BALANCE = 0
+  MINIMUM_BALANCE = 0
 
   attr_accessor :balance
 
@@ -18,9 +19,12 @@ class Account
   end
 
   def withdraw(amount)
+    raise("Failed to withdraw - cannot exceed minimum balance") if self.balance - amount < MINIMUM_BALANCE
     self.balance -= amount
     withdrawl_confirmation_message(amount)
   end
+
+
 
   private
   def deposit_confirmation_message(amount)
