@@ -1,6 +1,6 @@
 class Account
 
-  attr_reader :balance
+  attr_accessor :balance
 
   def initialize
     @balance = 0
@@ -8,6 +8,10 @@ class Account
 
   def print_balance
     "Your current balance is #{self.balance}"
+  end
+
+  def deposit(amount)
+    "#{amount} was added to the account"
   end
 
 end
