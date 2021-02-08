@@ -24,10 +24,11 @@ class Account
     deposit_confirmation_message(amount)
   end
 
-  def withdraw(amount)
+  def withdraw(amount, transaction=Transaction.new(nil, amount, self.balance - amount))
     check_if_integer(amount)
     check_above_minimum_balance(amount)
     self.balance -= amount
+    self.transactions << transaction
     withdrawl_confirmation_message(amount)
   end
 

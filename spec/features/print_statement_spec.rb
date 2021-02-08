@@ -1,7 +1,7 @@
 require 'account'
 
 describe "make a deposit, make a withdrawl, print statement" do
-  xit "prints the correct statement" do
+  it "prints the correct statement" do
     account = Account.new
     account.deposit(100)
     account.withdraw(20)
