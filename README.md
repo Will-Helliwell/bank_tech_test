@@ -37,7 +37,21 @@ E.g. if using IRB:
 - `your_account_name.print_statement`
   - Prints a table in the console. Each represents a single transaction, and columns show the date it was made, debit amount, credit amount and resulting account balance.
 
+#### Running Tests
+
+- `rspec` (must be in root folder)
+- All tests passing
+- Coverage:
+  - 100%
+  - 17 unit tests
+  - 2 feature tests, including 'acceptance criteria' from original specification.
+
 ## Spec Interpretation
+
+### Aproach Taken
+
+- Simple class plan (below) to get an idea of the overall structure
+- Then followed the TDD process, using the user stories as a scaffold
 
 ### Application Type
 
@@ -97,6 +111,14 @@ As an account owner
 So that I can keep track of my account balance
 I want to be able to print an account statement showing date, debit, credit and balance
 ```
+
+### Suggested Extensions
+- Maximum account balance
+- Data persistence - connect to a database
+- Security - can only access account with the correct encrypted password
+- Users can have multiple accounts
+- Web-based UI
+
 ---
 
 # Original Specification
