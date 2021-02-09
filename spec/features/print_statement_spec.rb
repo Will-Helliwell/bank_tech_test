@@ -4,7 +4,7 @@ describe "FEATURE - make a deposit, make a withdrawl, print statement" do
   it "prints the correct statement" do
     account = Account.new
     account.deposit(amount: 100)
-    account.withdraw(20)
+    account.withdraw(amount: 20)
     expect(account.print_statement).to eq([
       Account::STATEMENT_HEADINGS,
       [Time.new.strftime(Transaction::DATE_FORMAT), 100, nil, Account::INITIAL_BALANCE + 100],

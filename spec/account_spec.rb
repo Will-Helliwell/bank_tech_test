@@ -37,17 +37,17 @@ describe Account do
       expect{account.deposit(amount: "hello")}.to raise_error(TypeError)
     end
     it "returns a confirmation message when given an integer" do
-      expect(account.withdraw(50, fake_transaction_2)).to eq("50 was withdrawn from the account")
+      expect(account.withdraw(amount: 50, transaction: fake_transaction_2)).to eq("50 was withdrawn from the account")
     end
     it "subtracts the deposit to the balance" do
-      account.withdraw(50, fake_transaction_2)
+      account.withdraw(amount: 50, transaction: fake_transaction_2)
       expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE + 100 - 50}")
     end
     it "returns an error if withdrawl will take below MINIMUM_BALANCE" do
-      expect{account.withdraw(1000, fake_transaction_2)}.to raise_error("Failed to withdraw - cannot exceed minimum balance")
+      expect{account.withdraw(amount: 1000, transaction: fake_transaction_2)}.to raise_error("Failed to withdraw - cannot exceed minimum balance")
     end
     it "adds a the transaction to the transaction history" do
-      account.withdraw(20, fake_transaction_2)
+      account.withdraw(amount: 20, transaction: fake_transaction_2)
       expect(account.print_statement).to eq([
         Account::STATEMENT_HEADINGS,
         [01/01/20, 100, nil, 100],
@@ -72,8 +72,8 @@ describe Account do
       account.deposit(amount: 100, transaction: fake_transaction_1)
       account.deposit(amount: 100, transaction: fake_transaction_1)
       account.deposit(amount: 100, transaction: fake_transaction_1)
-      account.withdraw(20, fake_transaction_2)
-      account.withdraw(20, fake_transaction_2)
+      account.withdraw(amount: 20, transaction: fake_transaction_2)
+      account.withdraw(amount: 20, transaction: fake_transaction_2)
       expect(account.print_statement).to eq([
         Account::STATEMENT_HEADINGS,
         [01/01/20, 100, nil, 100],
