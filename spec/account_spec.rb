@@ -11,7 +11,7 @@ describe Account do
 
   describe "#deposit" do
     it "raises an error if an integer not given as an argument" do
-      expect{account.deposit(amount: "hello")}.to raise_error(TypeError)
+      expect{account.deposit(amount: "hello", transaction: fake_transaction_1)}.to raise_error(TypeError)
     end
     it "returns a confirmation message when given an integer" do
       expect(account.deposit(amount: 100, transaction: fake_transaction_1)).to eq("100 was added to the account")
@@ -34,7 +34,7 @@ describe Account do
       account.deposit(amount: 100, transaction: fake_transaction_1)
     end
     it "raises an error if an integer not given as an argument" do
-      expect{account.deposit(amount: "hello")}.to raise_error(TypeError)
+      expect{account.deposit(amount: "hello", transaction: fake_transaction_2)}.to raise_error(TypeError)
     end
     it "returns a confirmation message when given an integer" do
       expect(account.withdraw(amount: 50, transaction: fake_transaction_2)).to eq("50 was withdrawn from the account")
