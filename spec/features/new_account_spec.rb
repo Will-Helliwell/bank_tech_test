@@ -1,6 +1,6 @@
 require 'account'
 
-describe "FEATURE - create new account" do
+describe "FEATURE TEST - create new account" do
   let(:account) {Account.new}
 
   it "a new user starts with a fresh account" do
