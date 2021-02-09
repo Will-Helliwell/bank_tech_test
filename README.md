@@ -1,42 +1,54 @@
-# Bank Tech Test - Will's Readme
+# Bank Tech Test
+---
+# Will's Readme
 
 ## Usage
 
-- Clone this repo and cd into it `(git clone "https://github.com/Will-Helliwell/bank_tech_test" && cd bank_tech_test)`
-- Install dependencies `bundle install`
+### Setup
 
-The program can then be run in any REPL.
+- `(git clone "https://github.com/Will-Helliwell/bank_tech_test" && cd bank_tech_test)` - Clone this repo and cd into it
+- `bundle install` - Install dependencies
+
+### Creating and Using an Account
+
+The program can be run in any REPL.
 
 E.g. if using IRB:
-- Open IRB and load the files - `irb -r './lib/account.rb'`
-- Create your bank account `your_account_name = Account.new`
+- `irb -r './lib/account.rb'` - Open IRB and load the files
+- `your_account_name = Account.new` - Create your bank account
 
-Public methods that can be called on your account:
+#### Public methods available
 - `your_account_name.deposit(amount: 10)`
   - Adds the amount (in this case 10) to your bank balance and displays a confirmation message if successful
   - Adds the deposit to your transaction record
   - Raises an error if a non-integer is given as argument
-  - Optional arguments (only used for testing) = date and transaction
+  - Optional arguments available (only used for testing): date and transaction.
 
-- `your_account_name.withdraw(integer)`
+- `your_account_name.withdraw(10)`
+  - Subtracts the amount (in this case 10) from your bank balance and displays a confirmation message if successful
+  - Adds the withdrawal to your transaction record
+  - Raises an error if a non-integer is given as argument
+  - Raises an error if the withdrawal takes the balance below the MINIMUM_BALANCE (set at zero for now)
+  - Optional arguments available (only used for testing): date and transaction.
+
 - `your_account_name.print_balance`
+  - Prints the current account balance
+
 - `your_account_name.print_statement`
-
-
-
+  - Prints a table in the console. Each represents a single transaction, and columns show the date it was made, debit amount, credit amount and resulting account balance.
 
 ## Spec Interpretation
 
 ### Application Type
 
 - Minimal user interface required - no front-end or even input via STDin. User can interact with their account using set commands directly in a REPL.
-- No persistence - on running the program, a 'fresh' account with zero balance is generated
-- No stated requirement for multiple users or security
-- No stated requirement for an overdraft - assume balance cannot go below zero
+- No persistence - all data regarding existing accounts is wiped once the REPL session is terminated.
+- No stated requirement for security
+- No stated requirement for an overdraft - assume for now that balance cannot go below zero
 
-**Interpretation** - my natural instinct here would have been to create a program with an account class, where new users can create their own instance of a bank account with a security layer (at least account number and encrypted password). The account history and balance could then be persisted in a database.
+**Interpretation** - my natural instinct here would have been to create a program with an account class, where new users can create their own instance of a bank account with a security layer (at least account number and encrypted password). The account history and balance could then be persisted in a database, allowing the user to log back into their account.
 
-However, the requirements seem deliberately minimal. Only the basic functionality for a single account is required at this stage. I have drawn up the below user stories to reflect this.
+However, the requirements seem deliberately minimal. Only the basic functionality for the account class is required at this stage. I have drawn up the below user stories to reflect this.
 
 **Class Structure** - initial plan
 - Class = Account
@@ -53,10 +65,15 @@ However, the requirements seem deliberately minimal. Only the basic functionalit
   - This might be worth extracting into a separate class, but I shall make that extraction if and when required.
   - Choice - I chose to make transaction a separate class (rather than, for example, recording the transactions for an account as an array of hashes) because to me transactions and accounts were two distinct objects with distinct responsibilities (holding data for a single transaction vs holding data and amending details for the entire account respectively).
 
-  ### Other Choices Made During Development
+### Other Notable Choices Made During Development
 
-  - Dependency injection of Transaction into Account - currently inject in two places: as optional arguments to withdraw and deposit methods. Another option would be to inject into the Account via initilizer, using @current_withdrawl and @current_deposit respectively. These would then be updated on withdrawl/deposit and a copy added to the @transactions array. This would avoid having to pass a fake transaction into the withdraw/deposit methods each time they are called in tests. However, it would also be more complicated to set up the double, and I think the code would be less easy to follow this way.
-  - With the current injection method, I cannot write an automated feature test to pass the acceptance criteria (although it would pass if I could) because
+- **Dependency injection of Transaction into Account** - currently injectected in two places: as optional arguments to withdraw and deposit methods. Another option would be to inject into the Account via initilizer, using @current_withdrawl and @current_deposit respectively. These would then be updated on withdrawl/deposit and a copy added to the @transactions array. This would avoid having to pass a fake transaction into the withdraw/deposit methods each time they are called in tests, instead passing via the initializer. However, it would also be more complicated to set up the double since it would need to respond to setter methods. I also think the code would be less easy to follow if written like this.
+
+- **Terminal-table gem dependancy** - I chose to use this gem instead of coding my own table generator from scratch, as it had all of the functionality I required.
+
+- **Return value for print_statement** - currently I am allowing the Account.print_statement to return the @transactions data as an array of arrays (the data structure required as input for the terminal-table gem). I have kept it like this because the method has to return something (even in print_table were the last line, it would return nil when run in the REPL) and the specification does not communicate a preference.
+- Keeping it like this is beneficial for testing because it allows the tests to analyze the array of arrays (which is simpler than analyzing the console table structure). If I make the reasonable assumption that the terminal-table gem works as marketed, then testing the array of arrays is also functionally equivalent.
+- If the client displayed a preference down the line, this could easily be modified.
 
 ### User Stories
 ```
@@ -80,8 +97,10 @@ As an account owner
 So that I can keep track of my account balance
 I want to be able to print an account statement showing date, debit, credit and balance
 ```
+---
 
-# Bank Tech Test - Original Spec
+# Original Specification
+
 Today, you'll practice doing a tech test.
 
 For most tech tests, you'll essentially have unlimited time. This practice session is about producing the best code you can when there is a minimal time pressure.
