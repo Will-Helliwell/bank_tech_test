@@ -18,14 +18,14 @@ class Account
     "Your current balance is #{self.balance}"
   end
 
-  def deposit(amount:, transaction: Transaction.new(amount, nil, self.balance + amount))
+  def deposit(amount:, transaction: Transaction.new(credit: amount, debit: nil, balance: self.balance + amount))
     check_if_integer(amount)
     self.balance += amount
     self.transactions << transaction
     deposit_confirmation_message(amount)
   end
 
-  def withdraw(amount, transaction=Transaction.new(nil, amount, self.balance - amount))
+  def withdraw(amount, transaction=Transaction.new(credit: nil, debit: amount, balance: self.balance - amount))
     check_if_integer(amount)
     check_above_minimum_balance(amount)
     self.balance -= amount
