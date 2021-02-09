@@ -39,12 +39,11 @@ class Account
     self.transactions.each{ |transaction|
       rows << [transaction.date, transaction.credit, transaction.debit, transaction.balance]
     }
-    table = Terminal::Table.new :rows => rows
-    puts table
+    print_table(rows)
     return rows
   end
 
-  
+
 
   private
   def deposit_confirmation_message(amount)
@@ -59,6 +58,11 @@ class Account
   end
   def check_above_minimum_balance(amount)
     raise("Failed to withdraw - cannot exceed minimum balance") if self.balance - amount < MINIMUM_BALANCE
+  end
+
+  def print_table(rows)
+    table = Terminal::Table.new :rows => rows
+    puts table
   end
 
 end
