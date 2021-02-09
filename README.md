@@ -45,6 +45,7 @@ E.g. if using IRB:
   - 100%
   - 17 unit tests
   - 2 feature tests, including 'acceptance criteria' from original specification.
+- Isolation - Account and Transaction class tests 100% isolated
 
 ## Spec Interpretation
 
