@@ -47,6 +47,11 @@ E.g. if using IRB:
   - 2 feature tests, including 'acceptance criteria' from original specification.
 - Isolation - Account and Transaction class tests 100% isolated
 
+#### Screenshot of App in Use
+
+![screenshot](https://github.com/Will-Helliwell/bank_tech_test/blob/master/bank_tech_test_screenshot.png
+)
+
 ## Spec Interpretation
 
 ### Aproach Taken
