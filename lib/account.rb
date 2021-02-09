@@ -19,14 +19,14 @@ class Account
     "Your current balance is #{self.balance}"
   end
 
-  def deposit(amount:, date: Time.new.strftime(DATE_FORMAT), transaction: Transaction.new(date: date, credit: amount, debit: nil, balance: self.balance + amount))
+  def deposit(amount:, date: get_date, transaction: Transaction.new(date: date, credit: amount, debit: nil, balance: self.balance + amount))
     check_if_integer(amount)
     self.balance += amount
     self.transactions << transaction
     deposit_confirmation_message(amount)
   end
 
-  def withdraw(amount:, date: Time.new.strftime(DATE_FORMAT), transaction: Transaction.new(date: date, credit: nil, debit: amount, balance: self.balance - amount))
+  def withdraw(amount:, date: get_date, transaction: Transaction.new(date: date, credit: nil, debit: amount, balance: self.balance - amount))
     check_if_integer(amount)
     check_above_minimum_balance(amount)
     self.balance -= amount
@@ -49,6 +49,9 @@ class Account
   end
   def withdrawl_confirmation_message(amount)
     "#{amount} was withdrawn from the account"
+  end
+  def get_date
+    Time.new.strftime(DATE_FORMAT)
   end
 
   def check_if_integer(amount)
