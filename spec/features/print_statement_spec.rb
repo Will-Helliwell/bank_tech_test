@@ -7,8 +7,8 @@ describe "FEATURE TESTS - print_statement" do
     account.withdraw(amount: 20)
     expect(account.print_statement).to eq([
       Account::STATEMENT_HEADINGS,
-      [Time.new.strftime(Transaction::DATE_FORMAT), 100, nil, Account::INITIAL_BALANCE + 100],
-      [Time.new.strftime(Transaction::DATE_FORMAT), nil, 20, Account::INITIAL_BALANCE + 100 - 20]
+      [Time.new.strftime(Account::DATE_FORMAT), 100, nil, Account::INITIAL_BALANCE + 100],
+      [Time.new.strftime(Account::DATE_FORMAT), nil, 20, Account::INITIAL_BALANCE + 100 - 20]
       ])
   end
   it "passes acceptance criteria" do

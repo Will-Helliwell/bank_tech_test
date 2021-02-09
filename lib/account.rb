@@ -6,6 +6,7 @@ class Account
   INITIAL_BALANCE = 0
   MINIMUM_BALANCE = 0
   STATEMENT_HEADINGS = ["Date", "Credit", "Debit", "Balance"]
+  DATE_FORMAT = "%d/%m/%Y"
 
   attr_accessor :balance, :transactions
 
@@ -18,14 +19,14 @@ class Account
     "Your current balance is #{self.balance}"
   end
 
-  def deposit(amount:, date: Time.new.strftime(Transaction::DATE_FORMAT), transaction: Transaction.new(date: date, credit: amount, debit: nil, balance: self.balance + amount))
+  def deposit(amount:, date: Time.new.strftime(DATE_FORMAT), transaction: Transaction.new(date: date, credit: amount, debit: nil, balance: self.balance + amount))
     check_if_integer(amount)
     self.balance += amount
     self.transactions << transaction
     deposit_confirmation_message(amount)
   end
 
-  def withdraw(amount:, date: Time.new.strftime(Transaction::DATE_FORMAT), transaction: Transaction.new(date: date, credit: nil, debit: amount, balance: self.balance - amount))
+  def withdraw(amount:, date: Time.new.strftime(DATE_FORMAT), transaction: Transaction.new(date: date, credit: nil, debit: amount, balance: self.balance - amount))
     check_if_integer(amount)
     check_above_minimum_balance(amount)
     self.balance -= amount
