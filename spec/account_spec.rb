@@ -22,7 +22,10 @@ describe Account do
     end
     it "adds a the transaction to the transaction history" do
       account.deposit(100, fake_transaction_1)
-      expect(account.print_statement).to eq([[01/01/20, 100, nil, 100]])
+      expect(account.print_statement).to eq([
+        Account::STATEMENT_HEADINGS,
+        [01/01/20, 100, nil, 100]
+        ])
     end
   end
 
@@ -45,7 +48,11 @@ describe Account do
     end
     it "adds a the transaction to the transaction history" do
       account.withdraw(20, fake_transaction_2)
-      expect(account.print_statement).to eq([[01/01/20, 100, nil, 100], [01/01/20, nil, 20, 80]])
+      expect(account.print_statement).to eq([
+        Account::STATEMENT_HEADINGS,
+        [01/01/20, 100, nil, 100],
+        [01/01/20, nil, 20, 80]
+        ])
     end
   end
 
@@ -56,7 +63,10 @@ describe Account do
     end
     it "prints correctly for an account with one transaction" do
       account.deposit(100, fake_transaction_1)
-      expect(account.print_statement).to eq([[01/01/20, 100, nil, 100]])
+      expect(account.print_statement).to eq([
+        Account::STATEMENT_HEADINGS,
+        [01/01/20, 100, nil, 100]
+        ])
     end
     it "prints correctly for an account with many transactions" do
       account.deposit(100, fake_transaction_1)
@@ -65,6 +75,7 @@ describe Account do
       account.withdraw(20, fake_transaction_2)
       account.withdraw(20, fake_transaction_2)
       expect(account.print_statement).to eq([
+        Account::STATEMENT_HEADINGS,
         [01/01/20, 100, nil, 100],
         [01/01/20, 100, nil, 100],
         [01/01/20, 100, nil, 100],

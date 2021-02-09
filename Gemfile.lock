@@ -57,6 +57,7 @@ DEPENDENCIES
   rubocop-rspec
   simplecov
   simplecov-console
+  terminal-table
 
 RUBY VERSION
    ruby 2.7.0p0

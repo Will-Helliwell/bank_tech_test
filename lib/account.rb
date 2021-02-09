@@ -1,9 +1,11 @@
 require_relative './transaction.rb'
+require 'terminal-table'
 
 class Account
 
   INITIAL_BALANCE = 0
   MINIMUM_BALANCE = 0
+  STATEMENT_HEADINGS = ["Date", "Credit", "Debit", "Balance"]
 
   attr_accessor :balance, :transactions
 
@@ -33,11 +35,16 @@ class Account
 
   def print_statement
     return "No recorded transactions" if self.transactions.length == 0
-    self.transactions.map{ |transaction|
-      [transaction.date, transaction.credit, transaction.debit, transaction.balance]
+    rows = [STATEMENT_HEADINGS]
+    self.transactions.each{ |transaction|
+      rows << [transaction.date, transaction.credit, transaction.debit, transaction.balance]
     }
+    table = Terminal::Table.new :rows => rows
+    puts table
+    return rows
   end
 
+  
 
   private
   def deposit_confirmation_message(amount)
