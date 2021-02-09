@@ -1,5 +1,30 @@
 # Bank Tech Test - Will's Readme
 
+## Usage
+
+- Clone this repo and cd into it `(git clone "https://github.com/Will-Helliwell/bank_tech_test" && cd bank_tech_test)`
+- Install dependencies `bundle install`
+
+The program can then be run in any REPL.
+
+E.g. if using IRB:
+- Open IRB and load the files - `irb -r './lib/account.rb'`
+- Create your bank account `your_account_name = Account.new`
+
+Public methods that can be called on your account:
+- `your_account_name.deposit(amount: 10)`
+  - Adds the amount (in this case 10) to your bank balance and displays a confirmation message if successful
+  - Adds the deposit to your transaction record
+  - Raises an error if a non-integer is given as argument
+  - Optional arguments (only used for testing) = date and transaction
+
+- `your_account_name.withdraw(integer)`
+- `your_account_name.print_balance`
+- `your_account_name.print_statement`
+
+
+
+
 ## Spec Interpretation
 
 ### Application Type
