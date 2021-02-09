@@ -11,17 +11,17 @@ describe Account do
 
   describe "#deposit" do
     it "raises an error if an integer not given as an argument" do
-      expect{account.deposit("hello")}.to raise_error(TypeError)
+      expect{account.deposit(amount: "hello")}.to raise_error(TypeError)
     end
     it "returns a confirmation message when given an integer" do
-      expect(account.deposit(100, fake_transaction_1)).to eq("100 was added to the account")
+      expect(account.deposit(amount: 100, transaction: fake_transaction_1)).to eq("100 was added to the account")
     end
     it "adds the deposit to the balance" do
-      account.deposit(100, fake_transaction_1)
+      account.deposit(amount: 100, transaction: fake_transaction_1)
       expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE + 100}")
     end
     it "adds a the transaction to the transaction history" do
-      account.deposit(100, fake_transaction_1)
+      account.deposit(amount: 100, transaction: fake_transaction_1)
       expect(account.print_statement).to eq([
         Account::STATEMENT_HEADINGS,
         [01/01/20, 100, nil, 100]
@@ -31,10 +31,10 @@ describe Account do
 
   describe "#withdraw" do
     before(:each) do
-      account.deposit(100, fake_transaction_1)
+      account.deposit(amount: 100, transaction: fake_transaction_1)
     end
     it "raises an error if an integer not given as an argument" do
-      expect{account.deposit("hello")}.to raise_error(TypeError)
+      expect{account.deposit(amount: "hello")}.to raise_error(TypeError)
     end
     it "returns a confirmation message when given an integer" do
       expect(account.withdraw(50, fake_transaction_2)).to eq("50 was withdrawn from the account")
@@ -62,16 +62,16 @@ describe Account do
       expect(account.print_statement).to eq("No recorded transactions")
     end
     it "prints correctly for an account with one transaction" do
-      account.deposit(100, fake_transaction_1)
+      account.deposit(amount: 100, transaction: fake_transaction_1)
       expect(account.print_statement).to eq([
         Account::STATEMENT_HEADINGS,
         [01/01/20, 100, nil, 100]
         ])
     end
     it "prints correctly for an account with many transactions" do
-      account.deposit(100, fake_transaction_1)
-      account.deposit(100, fake_transaction_1)
-      account.deposit(100, fake_transaction_1)
+      account.deposit(amount: 100, transaction: fake_transaction_1)
+      account.deposit(amount: 100, transaction: fake_transaction_1)
+      account.deposit(amount: 100, transaction: fake_transaction_1)
       account.withdraw(20, fake_transaction_2)
       account.withdraw(20, fake_transaction_2)
       expect(account.print_statement).to eq([

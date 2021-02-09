@@ -31,6 +31,7 @@ However, the requirements seem deliberately minimal. Only the basic functionalit
   ### Other Choices Made During Development
 
   - Dependency injection of Transaction into Account - currently inject in two places: as optional arguments to withdraw and deposit methods. Another option would be to inject into the Account via initilizer, using @current_withdrawl and @current_deposit respectively. These would then be updated on withdrawl/deposit and a copy added to the @transactions array. This would avoid having to pass a fake transaction into the withdraw/deposit methods each time they are called in tests. However, it would also be more complicated to set up the double, and I think the code would be less easy to follow this way.
+  - With the current injection method, I cannot write an automated feature test to pass the acceptance criteria (although it would pass if I could) because
 
 ### User Stories
 ```

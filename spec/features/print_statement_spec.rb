@@ -3,7 +3,7 @@ require 'account'
 describe "FEATURE - make a deposit, make a withdrawl, print statement" do
   it "prints the correct statement" do
     account = Account.new
-    account.deposit(100)
+    account.deposit(amount: 100)
     account.withdraw(20)
     expect(account.print_statement).to eq([
       Account::STATEMENT_HEADINGS,
