@@ -31,7 +31,7 @@ class Account
     check_above_minimum_balance(amount)
     self.balance -= amount
     self.transactions << transaction
-    withdrawl_confirmation_message(amount)
+    withdrawal_confirmation_message(amount)
   end
 
   def print_statement
@@ -47,7 +47,7 @@ class Account
   def deposit_confirmation_message(amount)
     "#{amount} was added to the account"
   end
-  def withdrawl_confirmation_message(amount)
+  def withdrawal_confirmation_message(amount)
     "#{amount} was withdrawn from the account"
   end
   def get_date

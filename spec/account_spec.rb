@@ -43,7 +43,7 @@ describe Account do
       account.withdraw(amount: 50, transaction: fake_transaction_2)
       expect(account.print_balance).to eq("Your current balance is #{Account::INITIAL_BALANCE + 100 - 50}")
     end
-    it "returns an error if withdrawl will take below MINIMUM_BALANCE" do
+    it "returns an error if withdrawal will take below MINIMUM_BALANCE" do
       expect{account.withdraw(amount: 1000, transaction: fake_transaction_2)}.to raise_error("Failed to withdraw - cannot exceed minimum balance")
     end
     it "adds a the transaction to the transaction history" do

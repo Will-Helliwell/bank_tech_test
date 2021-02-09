@@ -1,7 +1,7 @@
 require 'account'
 
 describe "FEATURE TESTS - print_statement" do
-  it "prints the correct statement when user makes a deposit, makse a withdrawl, prints statement" do
+  it "prints the correct statement when user makes a deposit, makse a withdrawal, prints statement" do
     account = Account.new
     account.deposit(amount: 100)
     account.withdraw(amount: 20)

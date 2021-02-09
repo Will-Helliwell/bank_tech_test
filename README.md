@@ -81,7 +81,7 @@ However, the requirements seem deliberately minimal. Only the basic functionalit
 
 ### Other Notable Choices Made During Development
 
-- **Dependency injection of Transaction into Account** - currently injectected in two places: as optional arguments to withdraw and deposit methods. Another option would be to inject into the Account via initilizer, using @current_withdrawl and @current_deposit respectively. These would then be updated on withdrawl/deposit and a copy added to the @transactions array. This would avoid having to pass a fake transaction into the withdraw/deposit methods each time they are called in tests, instead passing via the initializer. However, it would also be more complicated to set up the double since it would need to respond to setter methods. I also think the code would be less easy to follow if written like this.
+- **Dependency injection of Transaction into Account** - currently injectected in two places: as optional arguments to withdraw and deposit methods. Another option would be to inject into the Account via initilizer, using @current_withdrawal and @current_deposit respectively. These would then be updated on withdrawal/deposit and a copy added to the @transactions array. This would avoid having to pass a fake transaction into the withdraw/deposit methods each time they are called in tests, instead passing via the initializer. However, it would also be more complicated to set up the double since it would need to respond to setter methods. I also think the code would be less easy to follow if written like this.
 
 - **Terminal-table gem dependancy** - I chose to use this gem instead of coding my own table generator from scratch, as it had all of the functionality I required.
 
