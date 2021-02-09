@@ -35,12 +35,9 @@ class Account
 
   def print_statement
     return "No recorded transactions" if self.transactions.length == 0
-    rows = [STATEMENT_HEADINGS]
-    self.transactions.each{ |transaction|
-      rows << [transaction.date, transaction.credit, transaction.debit, transaction.balance]
-    }
+    rows = generate_table_rows(self.transactions)
     print_table(rows)
-    return rows
+    rows
   end
 
 
@@ -60,6 +57,13 @@ class Account
     raise("Failed to withdraw - cannot exceed minimum balance") if self.balance - amount < MINIMUM_BALANCE
   end
 
+  def generate_table_rows(transactions)
+    rows = [STATEMENT_HEADINGS]
+    transactions.each{ |transaction|
+      rows << [transaction.date, transaction.credit, transaction.debit, transaction.balance]
+    }
+    rows
+  end
   def print_table(rows)
     table = Terminal::Table.new :rows => rows
     puts table
