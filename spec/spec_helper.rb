@@ -12,6 +12,16 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+# SimpleCov configuration
+require 'simplecov'
+require "simplecov-console"
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+  # SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::Console,
+  # SimpleCov::Formatter::Console.show_covered = true # show all files in coverage report
+])
+SimpleCov.start
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

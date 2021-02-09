@@ -1,6 +1,6 @@
 require 'account'
 
-describe "make a deposit, make a withdrawl, print statement" do
+describe "FEATURE - make a deposit, make a withdrawl, print statement" do
   it "prints the correct statement" do
     account = Account.new
     account.deposit(100)
