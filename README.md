@@ -4,7 +4,7 @@
 
 This is my submission to a sample tech test from the 10th week of the Makers Academy coding bootcamp. 
 
-The challenge was to test-drive the creation of a simple REPL-based banking app from a pre-defined set of user stories ([jump to the Makers readme to see the original instructions in full](#Original-Specification).
+The challenge was to test-drive the creation of a simple REPL-based banking app from a pre-defined set of user stories ([jump to the Makers readme to see the original instructions in full](#Original-Specification)).
 
 This challenge allowed me to put into practice a lot of the principles and techniques learned on the course, including:
 - TDD
