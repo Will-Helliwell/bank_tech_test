@@ -1,6 +1,21 @@
 # Bank Tech Test
 ---
-# Will's Readme
+## About
+
+This is my submission to a sample tech test from the 10th week of the Makers Academy coding bootcamp. 
+
+The challenge was to test-drive the creation of a simple REPL-based banking app from a pre-defined set of user stories ([jump to the Makers readme to see the original instructions in full](#Original-Specification).
+
+This challenge allowed me to put into practice a lot of the principles and techniques learned on the course, including:
+- TDD
+- Test isolation using mocking
+- Dependency injection
+- DRY principles 
+
+#### Screenshot of App in Use
+
+![screenshot](https://github.com/Will-Helliwell/bank_tech_test/blob/master/bank_tech_test_screenshot.png
+)
 
 ## Usage
 
@@ -47,13 +62,30 @@ E.g. if using IRB:
   - 2 feature tests, including 'acceptance criteria' from original specification.
 - Isolation - Account and Transaction class tests 100% isolated
 
-#### Screenshot of App in Use
+## Specification, Approach and Extensions
 
-![screenshot](https://github.com/Will-Helliwell/bank_tech_test/blob/master/bank_tech_test_screenshot.png
-)
+### User Stories
+```
+As an new user
+So that I can store my money
+I want to be given a fresh account with zero balance
 
-## Spec Interpretation
+As an account owner
+So that I can store my money
+I want to be able to deposit money to my account
 
+As an account owner
+So that I can use my stored money
+I want to be able to withdraw money from my account
+
+As an account owner
+Because I do not have an overdraft arrangement
+I want to be barred from reducing my balance below zero
+
+As an account owner
+So that I can keep track of my account balance
+I want to be able to print an account statement showing date, debit, credit and balance
+```
 ### Aproach Taken
 
 - Simple class plan (below) to get an idea of the overall structure
@@ -68,7 +100,7 @@ E.g. if using IRB:
 
 **Interpretation** - my natural instinct here would have been to create a program with an account class, where new users can create their own instance of a bank account with a security layer (at least account number and encrypted password). The account history and balance could then be persisted in a database, allowing the user to log back into their account.
 
-However, the requirements seem deliberately minimal. Only the basic functionality for the account class is required at this stage. I have drawn up the below user stories to reflect this.
+However, the user-stories seem deliberately minimal. Only the basic functionality for the account class is required at this stage. I have drawn up the below user stories to reflect this.
 
 **Class Structure** - initial plan
 - Class = Account
@@ -95,28 +127,7 @@ However, the requirements seem deliberately minimal. Only the basic functionalit
 - Keeping it like this is beneficial for testing because it allows the tests to analyze the array of arrays (which is simpler than analyzing the console table structure). If I make the reasonable assumption that the terminal-table gem works as marketed, then testing the array of arrays is also functionally equivalent.
 - If the client displayed a preference down the line, this could easily be modified.
 
-### User Stories
-```
-As an new user
-So that I can store my money
-I want to be given a fresh account with zero balance
 
-As an account owner
-So that I can store my money
-I want to be able to deposit money to my account
-
-As an account owner
-So that I can use my stored money
-I want to be able to withdraw money from my account
-
-As an account owner
-Because I do not have an overdraft arrangement
-I want to be barred from reducing my balance below zero
-
-As an account owner
-So that I can keep track of my account balance
-I want to be able to print an account statement showing date, debit, credit and balance
-```
 
 ### Suggested Extensions
 - Maximum account balance
